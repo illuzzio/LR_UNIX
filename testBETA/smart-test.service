@@ -1,0 +1,11 @@
+[Unit]
+Description=My first service to test
+
+[Service]
+ExecStart=/usr/bin/python3 /home/illuzzio/Desktop/test.py
+WorkingDirectory=/home/illuzzio/Desktop
+User=illuzzio
+Group=illuzzio
+
+[Install]
+WantedBy=multi-user.target
