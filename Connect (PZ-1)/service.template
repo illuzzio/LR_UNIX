@@ -1,0 +1,6 @@
+[Unit]
+Description=The service calculates the time spent on the Internet
+[Service]
+ExecStart=PATH
+[Install]
+WantedBy=multi-user.target
