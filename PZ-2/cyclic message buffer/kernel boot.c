@@ -38,46 +38,6 @@ typedef struct {
     int number;
 } message_request;
 
-#include <linux/init.h>
-#include <linux/module.h>
-#include <linux/version.h>
-#include <linux/types.h>
-#include <linux/kdev_t.h>
-#include <linux/fs.h>
-#include <linux/device.h>
-#include <linux/cdev.h>
-#include <linux/uaccess.h>
-#include <linux/ioctl.h>
-#include <linux/time.h>
-
-
-static dev_t first; // Global variable for the first device number
-static struct cdev c_dev; // Global variable for the character device structure
-static struct class *cl; // Global variable for the device class
-
-
-#define DEVICE_NAME "simpmod"
-#define REGION_NAME "simpmodreg"
-#define ROUND_BUFFER_SIZE 20
-#define MESSAGE_MAX_SIZE 50
-
-typedef struct{
-    struct timespec ts;
-    char message[MESSAGE_MAX_SIZE];
-} buf_message;
-
-typedef struct{
-    buf_message messages[ROUND_BUFFER_SIZE];
-    unsigned int insert_ptr;
-    unsigned int first_ptr;
-    unsigned int len;
-} round_buffer;
-
-typedef struct {
-    buf_message message;
-    int number;
-} message_request;
-
 static round_buffer buffer;
 
 #define GET_BUFFER _IOR('a','a', int *)
